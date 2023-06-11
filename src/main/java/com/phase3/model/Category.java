@@ -13,7 +13,7 @@ import jakarta.persistence.Id;
 public class Category {
 		@Id
 		@GeneratedValue(strategy= GenerationType.AUTO)
-		//@Column(name="category_id")
+		@Column(name="category_id")
 		private int id;
 		private String name;
 		public Category(int id, String name) {
