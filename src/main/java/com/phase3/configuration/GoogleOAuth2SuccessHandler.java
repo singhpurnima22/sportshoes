@@ -37,6 +37,14 @@ public class GoogleOAuth2SuccessHandler implements AuthenticationSuccessHandler{
 		String email=token.getPrincipal().getAttributes().get("email").toString();
 			 
 			if(userRepository.findUserByEmail(email).isPresent()) {
+				User user = userRepository.findUserByEmail(email).get();
+				List<Role> roles =new ArrayList<>();
+				
+				user.getRoles().forEach( r -> {
+					roles.add(r);     
+				});
+				          
+				user.setRoles(roles);
 				
 			}
 			else {
