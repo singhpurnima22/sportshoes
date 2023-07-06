@@ -1,7 +1,6 @@
 package com.phase3.model;
 
-import org.hibernate.annotations.ManyToAny;
-
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -13,18 +12,18 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class Product {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@JoinColumn(name= "category_id",referencedColumnName ="category_id" )
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-    private String name;
-	
-	@ManyToOne(fetch=FetchType.LAZY)
+	private String name;
+
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "category_id")
 	private Category category;
 	private double price;
 	private double weight;
 	private String description;
 	private String imagename;
-	
+
 	public Product() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -103,9 +102,5 @@ public class Product {
 		return "Product [id=" + id + ", name=" + name + ", category=" + category + ", price=" + price + ", weight="
 				+ weight + ", description=" + description + ", imagename=" + imagename + "]";
 	}
-	
-	
-	
-	
-	
+
 }

@@ -1,6 +1,7 @@
 package com.phase3.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,9 +13,24 @@ import com.phase3.repository.ProductRepository;
 public class ProductService {
 	@Autowired
 	private ProductRepository productrepo;
-	
-	public List<Product> getAllProduct()
-	{
+
+	public List<Product> getAllProduct() {
 		return productrepo.findAll();
+	}
+
+	public void addProduct(Product product) {
+		productrepo.save(product);
+	}
+
+	public void removeProductById(long id) {
+		productrepo.deleteById(id);
+	}
+
+	public Optional<Product> getProductById(long id) {
+		return productrepo.findById(id);
+	}
+
+	public List<Product> getAllProductByCategory(int id) {
+		return productrepo.findAllByCategory_Id(id);
 	}
 }

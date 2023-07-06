@@ -11,22 +11,23 @@ import com.phase3.repository.CategoryRepository;
 
 @Service
 public class CategotyService {
-	
+
 	@Autowired
-private CategoryRepository categoryrepo;
-	
-	public List <Category> getAllCategory(){
+	private CategoryRepository categoryrepo;
+
+	public List<Category> getAllCategory() {
 		return categoryrepo.findAll();
 	}
-	
+
 	public void addCategory(Category category) {
 		categoryrepo.save(category);
 	}
-	
+
 	public void removeCategoryById(int id) {
 		categoryrepo.deleteById(id);
 	}
-	public Optional<Category> getCategoryById(int id){
+
+	public Optional<Category> getCategoryById(int id) {
 		return categoryrepo.findById(id);
 	}
 }
